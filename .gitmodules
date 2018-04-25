@@ -1,0 +1,63 @@
+[submodule "apricityOS/ice-ssb"]
+	path = apricityOS/ice-ssb
+	url = https://github.com/Apricity-OS/ice-ssb.git
+[submodule "apricityOS/apricity-freezedry-server"]
+	path = apricityOS/apricity-freezedry-server
+	url = https://github.com/Apricity-OS/apricity-freezedry-server.git
+[submodule "apricityOS/apricity-packages"]
+	path = apricityOS/apricity-packages
+	url = https://github.com/Apricity-OS/apricity-packages.git
+[submodule "apricityOS/apricity-freezedry"]
+	path = apricityOS/apricity-freezedry
+	url = https://github.com/Apricity-OS/apricity-freezedry.git
+[submodule "apricityOS/apricity-themes-cinnamon"]
+	path = apricityOS/apricity-themes-cinnamon
+	url = https://github.com/Apricity-OS/apricity-themes-cinnamon.git
+[submodule "apricityOS/apricity-packages-dev"]
+	path = apricityOS/apricity-packages-dev
+	url = https://github.com/Apricity-OS/apricity-packages-dev.git
+[submodule "apricityOS/apricity-themes-gnome"]
+	path = apricityOS/apricity-themes-gnome
+	url = https://github.com/Apricity-OS/apricity-themes-gnome.git
+[submodule "apricityOS/apricityassets"]
+	path = apricityOS/apricityassets
+	url = https://github.com/Apricity-OS/apricityassets.git
+[submodule "apricityOS/calamares"]
+	path = apricityOS/calamares
+	url = https://github.com/Apricity-OS/calamares.git
+[submodule "apricityOS/apricity-repo"]
+	path = apricityOS/apricity-repo
+	url = https://github.com/Apricity-OS/apricity-repo.git
+[submodule "apricityOS/apricity-site-meteor"]
+	path = apricityOS/apricity-site-meteor
+	url = https://github.com/Apricity-OS/apricity-site-meteor.git
+[submodule "apricityOS/apricity-build"]
+	path = apricityOS/apricity-build
+	url = https://github.com/Apricity-OS/apricity-build.git
+[submodule "apricityOS/apricity-keyring"]
+	path = apricityOS/apricity-keyring
+	url = https://github.com/Apricity-OS/apricity-keyring.git
+[submodule "apricityOS/apricity-vim"]
+	path = apricityOS/apricity-vim
+	url = https://github.com/Apricity-OS/apricity-vim.git
+[submodule "apricityOS/apricity-chrome-profile"]
+	path = apricityOS/apricity-chrome-profile
+	url = https://github.com/Apricity-OS/apricity-chrome-profile.git
+[submodule "apricityOS/apricity-os.github.io"]
+	path = apricityOS/apricity-os.github.io
+	url = https://github.com/Apricity-OS/apricity-os.github.io.git
+[submodule "apricityOS/apricity-graphics"]
+	path = apricityOS/apricity-graphics
+	url = https://github.com/Apricity-OS/apricity-graphics.git
+[submodule "apricityOS/apricity-site"]
+	path = apricityOS/apricity-site
+	url = https://github.com/Apricity-OS/apricity-site.git
+[submodule "apricityOS/apricity-wallpapers"]
+	path = apricityOS/apricity-wallpapers
+	url = https://github.com/Apricity-OS/apricity-wallpapers.git
+[submodule "apricityOS/apricity-site-dev"]
+	path = apricityOS/apricity-site-dev
+	url = https://github.com/Apricity-OS/apricity-site-dev.git
+[submodule "apricityOS/apricity-icons"]
+	path = apricityOS/apricity-icons
+	url = https://github.com/Apricity-OS/apricity-icons.git
