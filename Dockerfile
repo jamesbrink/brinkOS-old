@@ -27,6 +27,7 @@ RUN set -xe; \
     pacman -Syu --noconfirm; \
     pacman -S base base-devel cmake automake autoconf wget vim archiso openssh git --noconfirm;
 
+# Copy in brinkOS assets
 COPY ./brinkOS /build
 
 # Set our entrypoint which kicks off our build.

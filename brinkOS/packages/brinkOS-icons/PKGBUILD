@@ -1,0 +1,18 @@
+# Maintainer: James Brink <brink.james@gmail.com>
+# Previos Maintainer: Alex Gajewski <agajews@gmail.com>
+
+_pkgname='brinkOS Icons'
+pkgname=brinkOS-icons
+pkgver=1.0.0
+pkgrel=1
+pkgdesc='Icons for brinkOS (Originally Apricity-OS Icons)'
+arch=(any)
+license=(GPL)
+url="https://github.com/jamesbrink/brinkOS"
+depends=()
+sha256sums=('SKIP')
+
+package() {
+	mkdir -p "${pkgdir}/usr/share/icons"
+	cp -rf "${srcdir}/apricity-icons/Apricity Icons" "${pkgdir}/usr/share/icons"
+}

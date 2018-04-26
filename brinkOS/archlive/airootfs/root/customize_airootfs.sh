@@ -19,6 +19,13 @@ sed -i 's/#\(HandleSuspendKey=\)suspend/\1ignore/' /etc/systemd/logind.conf
 sed -i 's/#\(HandleHibernateKey=\)hibernate/\1ignore/' /etc/systemd/logind.conf
 sed -i 's/#\(HandleLidSwitch=\)suspend/\1ignore/' /etc/systemd/logind.conf
 
+groupadd liveuser
+useradd -g liveuser -d /home/liveuser -m -s /bin/bash liveuser
+echo "liveuser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers;
+
 systemctl enable pacman-init.service choose-mirror.service
+# ln -s /usr/lib/systemd/system/gdm.service /build/archlive/airootfs/etc/systemd/system/display-manager.service
+# This throws out warnings but still works.
+systemctl enable gdm
 systemctl enable graphical.target
 systemctl set-default graphical.target

@@ -18,6 +18,7 @@ fuse-exfat
 gdm
 git
 gnome-screenshot
+gnome-terminal
 grub
 gucharmap
 gzip
@@ -26,8 +27,6 @@ hunspell
 icu
 ipw2100-fw
 ipw2200-fw
-lib32-alsa-plugins
-lib32-mesa-libgl
 libmtp
 linux-firmware
 linux-headers
@@ -80,5 +79,6 @@ xorg-fonts
 xorg-server
 xorg-xinit
 xorg-xkill
+xterm
 xz
 zd1211-firmware
