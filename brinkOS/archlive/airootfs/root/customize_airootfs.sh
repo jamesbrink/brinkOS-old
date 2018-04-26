@@ -30,7 +30,7 @@ sed -i.bak 's/arch/brink/g' /usr/lib/os-release
 sed -i.bak 's#www.archlinux.org#github.com/jamesbrink/brinkOS#g' /usr/lib/os-release
 sed -i.bak 's#bbs.archlinux.org#github.com/jamesbrink/brinkOS#g' /usr/lib/os-release
 sed -i.bak 's#bugs.archlinux.org#github.com/jamesbrink/brinkOS#g' /usr/lib/os-release
-cp /usr/lib/os-release /etc/os-release
+# cp /usr/lib/os-release /etc/os-release
 
 systemctl enable pacman-init.service choose-mirror.service
 # ln -s /usr/lib/systemd/system/gdm.service /build/archlive/airootfs/etc/systemd/system/display-manager.service

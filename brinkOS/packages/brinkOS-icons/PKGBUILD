@@ -14,5 +14,5 @@ install=brinkOS-icons.install
 
 package() {
 	mkdir -p "${pkgdir}/usr/share/icons"
-	cp -rf "${srcdir}/brinkOS Icons" "${pkgdir}/usr/share/icons"
+	cp -rf "${srcdir}/brinkOS-icons" "${pkgdir}/usr/share/icons"
 }
