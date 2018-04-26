@@ -20,8 +20,17 @@ sed -i 's/#\(HandleHibernateKey=\)hibernate/\1ignore/' /etc/systemd/logind.conf
 sed -i 's/#\(HandleLidSwitch=\)suspend/\1ignore/' /etc/systemd/logind.conf
 
 groupadd liveuser
-useradd -g liveuser -d /home/liveuser -m -s /bin/bash liveuser
+useradd -g liveuser -d /home/liveuser -m -s /bin/bash  -G "adm,audio,floppy,log,network,rfkill,scanner,storage,optical,power,wheel,docker" liveuser
+passwd -d liveuser
 echo "liveuser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers;
+
+# Re-Branding
+sed -i.bak 's/Arch Linux/brinkOS/g' /usr/lib/os-release
+sed -i.bak 's/arch/brink/g' /usr/lib/os-release
+sed -i.bak 's/www.archlinux.org/brinkos.github.io/g' /usr/lib/os-release
+sed -i.bak 's/bbs.archlinux.org/brinkos.github.io/g' /usr/lib/os-release
+sed -i.bak 's/bugs.archlinux.org/brinkos.github.io/g' /usr/lib/os-release
+cp /usr/lib/os-release /etc/os-release
 
 systemctl enable pacman-init.service choose-mirror.service
 # ln -s /usr/lib/systemd/system/gdm.service /build/archlive/airootfs/etc/systemd/system/display-manager.service
