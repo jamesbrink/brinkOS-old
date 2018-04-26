@@ -30,5 +30,17 @@ RUN set -xe; \
 # Copy in brinkOS assets
 COPY ./brinkOS /build
 
+# Create prepare our build.
+RUN set -xe; \
+    mkdir -p /build/brinkOS-packages; \
+    chown -R build:build /build;
+    
+
+# Build brinkOS Icons package.
+RUN set -xe; \
+    cd /build/packages/brinkOS-icons; \
+    sudo -u build makepkg; \
+    repo-add /build/brinkOS-packages/repo.db.tar.gz brinkOS-icons-1.0.0-1-any.pkg.tar.xz; 
+
 # Set our entrypoint which kicks off our build.
 ENTRYPOINT [ "/build/docker-entrypoint.sh" ]
