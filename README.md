@@ -1,4 +1,4 @@
-# BrinkOS
+# brinkOS
 
-Just a place for me to store some updated build scripts for the dead ApricityOS Linux distro.
+Arch based distrobution with infuences from Apricity-OS
 
