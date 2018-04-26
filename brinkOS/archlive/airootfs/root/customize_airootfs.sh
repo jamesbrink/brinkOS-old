@@ -37,4 +37,10 @@ systemctl enable pacman-init.service choose-mirror.service
 # This throws out warnings but still works.
 systemctl enable gdm
 systemctl enable graphical.target
+
+# Enable open-vm-tools
+cat /proc/version > /etc/arch-release
+systemctl enable vmtoolsd.service
+systemctl enable vmware-vmblock-fuse.service
+
 systemctl set-default graphical.target
