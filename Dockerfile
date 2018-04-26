@@ -43,6 +43,12 @@ RUN set -xe; \
     repo-add /build/brinkOS-packages/brinkOS.db.tar.gz brinkOS-icons-1.0.0-1-any.pkg.tar.xz; \
     mv brinkOS-icons-1.0.0-1-any.pkg.tar.xz /build/brinkOS-packages/;
     
+# Build brinkOS Wallpaper package.
+RUN set -xe; \
+    cd /build/packages/brinkOS-wallpapers; \
+    sudo -u build makepkg; \
+    repo-add /build/brinkOS-packages/brinkOS.db.tar.gz brinkOS-wallpapers-1.0.0-1-any.pkg.tar.xz; \
+    mv brinkOS-wallpapers-1.0.0-1-any.pkg.tar.xz /build/brinkOS-packages/;
 
 # Set our entrypoint which kicks off our build.
 ENTRYPOINT [ "/build/docker-entrypoint.sh" ]
