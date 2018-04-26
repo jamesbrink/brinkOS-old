@@ -13,9 +13,16 @@ Build the brinkOS build container.
 docker build -t brinkos .
 ```
 
-build brinkOS
+build brinkOS, this will run and place the iso image in `./iso/`
 
 ```shell
+$ docker run -i -t --privileged -v `pwd`/iso:/iso --rm brinkos
+```
+
+or to optionally interact with the build process
+```shell
 $ docker run -i -t --privileged -v `pwd`/iso:/iso --rm brinkos bash
+[root@dc1f5b1f676f /]# cd /build/archlive/
+[root@dc1f5b1f676f archlive]# ./build.sh -v
 ```
 
