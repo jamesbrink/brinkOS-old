@@ -27,8 +27,6 @@ RUN set -xe; \
     pacman -Syu --noconfirm; \
     pacman -S base-devel cmake automake autoconf wget vim archiso openssh git --noconfirm;
 
-RUN pacman -S  --noconfirm
-
 COPY ./brinkOS /build
 
 
