@@ -1,4 +1,4 @@
 # brinkOS
 
-Arch based distrobution with infuences from Apricity-OS
+Arch based distribution with influences from Apricity-OS
 
