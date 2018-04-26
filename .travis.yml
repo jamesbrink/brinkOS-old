@@ -1,0 +1,7 @@
+language: bash
+services: docker
+
+script:
+  - docker build -t jamesbrink/brinkos .
+  - docker images
+  - docker run -i -t --privileged -v `pwd`/iso:/iso --rm jamesbrink/brinkos

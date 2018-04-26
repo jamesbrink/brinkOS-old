@@ -40,7 +40,9 @@ RUN set -xe; \
 RUN set -xe; \
     cd /build/packages/brinkOS-icons; \
     sudo -u build makepkg; \
-    repo-add /build/brinkOS-packages/repo.db.tar.gz brinkOS-icons-1.0.0-1-any.pkg.tar.xz; 
+    repo-add /build/brinkOS-packages/brinkOS.db.tar.gz brinkOS-icons-1.0.0-1-any.pkg.tar.xz; \
+    mv brinkOS-icons-1.0.0-1-any.pkg.tar.xz /build/brinkOS-packages/;
+    
 
 # Set our entrypoint which kicks off our build.
 ENTRYPOINT [ "/build/docker-entrypoint.sh" ]

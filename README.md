@@ -1,5 +1,8 @@
 # brinkOS
 
+[![Build Status](https://travis-ci.org/jamesbrink/brinkOS.svg?branch=master)](https://travis-ci.org/jamesbrink/brinkOS)
+
+## About
 Arch based Linux distribution for Engineers
 
 
