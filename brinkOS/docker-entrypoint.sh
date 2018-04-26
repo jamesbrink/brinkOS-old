@@ -3,8 +3,8 @@
 if [ "$#" -eq 0 ]; then
 	echo "Building brinkOS"
 	cd /build/archlive/ || exit
-	time ./build.sh -v -N brinkOS -o /iso
-	echo "Exiting"
+	./build.sh -v -N brinkOS -o /iso
+	exit $?
 else
 	exec "$@"
 fi
