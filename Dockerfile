@@ -25,8 +25,9 @@ RUN set -xe; \
 # Install all needed deps and compile the mesa llvmpipe driver from source.
 RUN set -xe; \
     pacman -Syu --noconfirm; \
-    pacman -S base-devel cmake automake autoconf wget vim archiso openssh git --noconfirm;
+    pacman -S base base-devel cmake automake autoconf wget vim archiso openssh git --noconfirm;
 
 COPY ./brinkOS /build
 
-
+# Set our entrypoint which kicks off our build.
+ENTRYPOINT [ "/build/docker-entrypoint.sh" ]

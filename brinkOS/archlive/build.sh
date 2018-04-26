@@ -7,7 +7,7 @@ iso_label="ARCH_$(date +%Y%m)"
 iso_version=$(date +%Y.%m.%d)
 install_dir=arch
 work_dir=work
-out_dir=out
+out_dir=/iso
 gpg_key=
 
 arch=$(uname -m)
