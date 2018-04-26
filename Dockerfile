@@ -22,13 +22,17 @@ RUN set -xe; \
     echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers; \
     echo "root ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers;
 
-# Install all needed deps and compile the mesa llvmpipe driver from source.
+# Install all needed deps
 RUN set -xe; \
     pacman -Syu --noconfirm; \
     pacman -S base base-devel cmake automake autoconf wget vim archiso openssh git --noconfirm;
 
 # Copy in brinkOS assets
 COPY ./brinkOS /build
+
+# If building on a debian host, dev/shm points to /run/shm
+# and will fail without this directory.
+RUN mkdir -p /build/archiso/work/x86_64/airootfs/run/shm
 
 # Create prepare our build.
 RUN set -xe; \
