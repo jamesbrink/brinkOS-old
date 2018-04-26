@@ -27,9 +27,9 @@ echo "liveuser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers;
 # Re-Branding
 sed -i.bak 's/Arch Linux/brinkOS/g' /usr/lib/os-release
 sed -i.bak 's/arch/brink/g' /usr/lib/os-release
-sed -i.bak 's/www.archlinux.org/brinkos.github.io/g' /usr/lib/os-release
-sed -i.bak 's/bbs.archlinux.org/brinkos.github.io/g' /usr/lib/os-release
-sed -i.bak 's/bugs.archlinux.org/brinkos.github.io/g' /usr/lib/os-release
+sed -i.bak 's#www.archlinux.org#github.com/jamesbrink/brinkOS#g' /usr/lib/os-release
+sed -i.bak 's#bbs.archlinux.org#github.com/jamesbrink/brinkOS#g' /usr/lib/os-release
+sed -i.bak 's#bugs.archlinux.org#github.com/jamesbrink/brinkOS#g' /usr/lib/os-release
 cp /usr/lib/os-release /etc/os-release
 
 systemctl enable pacman-init.service choose-mirror.service
