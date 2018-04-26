@@ -1,6 +1,6 @@
 # brinkOS
 
-Arch based distribution with influences from Apricity-OS
+Arch based Linux distribution for Engineers
 
 
 
