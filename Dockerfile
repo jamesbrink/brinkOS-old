@@ -32,14 +32,14 @@ COPY ./brinkOS /build
 
 # If building on a debian host, dev/shm points to /run/shm
 # and will fail without this directory.
-RUN mkdir -p /build/archiso/work/x86_64/airootfs/run/shm
+RUN mkdir -p /build/archiso/work/x86_64/airootfs/run/shm; \
+    mkdir -p /build/archiso/work/x86_64/airootfs/var/run/shm;
 
 # Create prepare our build.
 RUN set -xe; \
     mkdir -p /build/brinkOS-packages; \
     chown -R build:build /build;
     
-
 # Build brinkOS Icons package.
 RUN set -xe; \
     cd /build/packages/brinkOS-icons; \
