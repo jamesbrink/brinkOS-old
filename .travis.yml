@@ -3,7 +3,7 @@ services: docker
 script:
 - docker build -t jamesbrink/brinkos .
 - docker images
-- docker run -i -t --privileged -v `pwd`/iso:/iso --rm jamesbrink/brinkos
+- travis_wait 30 docker run -i -t --privileged -v `pwd`/iso:/iso --rm jamesbrink/brinkos
 - mv ./iso/*.iso ./iso/release.iso
 deploy:
   provider: releases
