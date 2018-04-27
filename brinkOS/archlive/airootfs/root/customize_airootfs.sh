@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # Attempt to work around build failure on debian hosts.
+mkdir -p /build/archiso/work/x86_64/airootfs/run/shm
+mkdir -p /build/archiso/work/x86_64/airootfs/var/run/shm
 mkdir -p /run/shm
 mkdir -p /var/run/shm
 

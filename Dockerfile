@@ -33,13 +33,22 @@ COPY ./brinkOS /build
 # If building on a debian host, dev/shm points to /run/shm
 # and will fail without this directory.
 RUN mkdir -p /build/archiso/work/x86_64/airootfs/run/shm; \
-    mkdir -p /build/archiso/work/x86_64/airootfs/var/run/shm;
+    mkdir -p /build/archiso/work/x86_64/airootfs/var/run/shm; \
+    mkdir -p /run/shm; \
+    mkdir -p /var/run/shm;
 
 # Create prepare our build.
 RUN set -xe; \
     mkdir -p /build/brinkOS-packages; \
     chown -R build:build /build;
-    
+
+# Build brinkOS Cinnamon Themes package.
+RUN set -xe; \
+    cd /build/packages/brinkOS-themes-cinnamon; \
+    sudo -u build makepkg; \
+    repo-add /build/brinkOS-packages/brinkOS.db.tar.gz brinkOS-themes-cinnamon-1.0.0-1-any.pkg.tar.xz; \
+    mv brinkOS-themes-cinnamon-1.0.0-1-any.pkg.tar.xz /build/brinkOS-packages/;
+
 # Build brinkOS Icons package.
 RUN set -xe; \
     cd /build/packages/brinkOS-icons; \

@@ -1,0 +1,21 @@
+# Maintainer: James Brink <brink.james@gmail.com>
+# Previous Maintainer: Alex Gajewski <agajews@gmail.com>
+
+_pkgname='brinkOS Themes'
+pkgname=brinkOS-themes-cinnamon
+pkgver=1.0.0
+pkgrel=1
+pkgdesc='Cinnamon Assets for brinkOS (Previously Apricity OS)'
+arch=(any)
+license=(GPL)
+url="https://github.com/jamesbrink/brinkOS"
+depends=()
+install="brinkOS-themes-cinnamon.install"
+
+package() {
+	rm -rf "${pkgdir}/usr/share/themes/Arctic-brinkOS"
+	mkdir -p "${pkgdir}/usr/share/themes"
+	mkdir -p "${pkgdir}/etc/skel/.config/autostart"
+	cp -rf "${srcdir}/brinkOS-themes-cinnamon/Arctic-brinkOS" "${pkgdir}/usr/share/themes"
+	# cp -f "${srcdir}/brinkOS-themes-cinnamon/firstrun-desktop.sh" "${pkgdir}/etc/skel/.config/autostart"
+}
