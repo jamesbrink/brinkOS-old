@@ -1,5 +1,16 @@
 #!/bin/bash
 
+# Setup Plymouth
+cat <<-EOF > /etc/mkinitcpio-archiso.conf
+HOOKS="base udev memdisk archiso_shutdown archiso archiso_loop_mnt archiso_pxe_common archiso_pxe_nbd archiso_pxe_http archiso_pxe_nfs archiso_kms block pcmcia filesystems keyboard plymouth"
+COMPRESSION="xz"
+EOF
+
+cat <<-EOF > /etc/mkinitcpio.conf
+HOOKS=(base udev autodetect modconf block filesystems keyboard fsck plymouth)
+EOF
+
+
 # Attempt to work around build failure on debian hosts.
 mkdir -p /build/archiso/work/x86_64/airootfs/run/shm
 mkdir -p /build/archiso/work/x86_64/airootfs/var/run/shm
@@ -39,6 +50,7 @@ sed -i.bak 's#bugs.archlinux.org#github.com/jamesbrink/brinkOS#g' /usr/lib/os-re
 # cp /usr/lib/os-release /etc/os-release
 
 # Setup theme
+echo "Setting theme to $GTK_THEME, $SHELL_THEME, $ICON_THEME, $WALLPAPER"
 sudo -u liveuser gsettings set org.cinnamon.desktop.interface gtk-theme "$GTK_THEME"
 sudo -u liveuser gsettings set org.cinnamon.desktop.wm.preferences theme "$GTK_THEME"
 sudo -u liveuser gsettings set org.cinnamon.theme name "$SHELL_THEME"
