@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Attempt to work around build failure on debian hosts.
+mkdir -p /run/shm
+mkdir -p /var/run/shm
+
 set -e -u
 
 sed -i 's/#\(en_US\.UTF-8\)/\1/' /etc/locale.gen
