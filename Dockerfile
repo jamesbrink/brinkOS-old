@@ -40,7 +40,40 @@ RUN mkdir -p /build/archiso/work/x86_64/airootfs/run/shm; \
 # Create prepare our build.
 RUN set -xe; \
     mkdir -p /build/brinkOS-packages; \
+    mkdir -p /build/AUR; \
     chown -R build:build /build;
+
+# Package is currently not resolving properly, quick work-around
+# TODO remove this later
+RUN cd /var/tmp; \
+    wget https://sgp.mirror.pkgbuild.com/extra/os/x86_64/libepoxy-1.5.1-1-x86_64.pkg.tar.xz; \
+    pacman -U --noconfirm ./libepoxy-1.5.1-1-x86_64.pkg.tar.xz;
+
+# Build plymouth from AUR
+# TODO move these elswhere as the list grows?
+# TODO how do I build without installing (dep errors will arise)
+RUN set -xe; \
+    cd /build/AUR; \
+    wget https://aur.archlinux.org/cgit/aur.git/snapshot/plymouth.tar.gz; \
+    tar xfv plymouth.tar.gz; \
+    rm plymouth.tar.gz; \
+    chown -R build:build plymouth; \
+    cd plymouth; \
+    sudo -u  build makepkg -si --noconfirm; \
+    repo-add /build/brinkOS-packages/brinkOS.db.tar.gz plymouth*.pkg.tar.xz; \
+    mv plymouth*.pkg.tar.xz /build/brinkOS-packages/;
+
+# Build gdm-plymouth from AUR
+RUN set -xe; \
+    cd /build/AUR; \
+    wget https://aur.archlinux.org/cgit/aur.git/snapshot/gdm-plymouth.tar.gz; \
+    tar xfv gdm-plymouth.tar.gz; \
+    rm gdm-plymouth.tar.gz; \
+    chown -R build:build gdm-plymouth; \
+    cd gdm-plymouth; \
+    sudo -u  build makepkg -si --noconfirm; \
+    repo-add /build/brinkOS-packages/brinkOS.db.tar.gz gdm-plymouth*.pkg.tar.xz; \
+    mv gdm-plymouth*.pkg.tar.xz /build/brinkOS-packages/;
 
 # Build brinkOS Cinnamon Themes package.
 RUN set -xe; \
