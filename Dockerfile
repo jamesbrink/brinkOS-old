@@ -64,8 +64,8 @@ RUN set -xe; \
     chown -R build:build gdm-plymouth; \
     cd gdm-plymouth; \
     sudo -u  build makepkg -si --noconfirm; \
-    repo-add /AUR/repo/AUR.db.tar.gz gdm-plymouth*.pkg.tar.xz; \
-    mv gdm-plymouth*.pkg.tar.xz /AUR/repo/;
+    repo-add /AUR/repo/AUR.db.tar.gz *plymouth*.pkg.tar.xz; \
+    mv *plymouth*.pkg.tar.xz /AUR/repo/;
 
 # Copy in brinkOS assets
 COPY ./brinkOS /build
