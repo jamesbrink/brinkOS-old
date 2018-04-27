@@ -63,5 +63,10 @@ RUN set -xe; \
     repo-add /build/brinkOS-packages/brinkOS.db.tar.gz brinkOS-wallpapers-1.0.0-1-any.pkg.tar.xz; \
     mv brinkOS-wallpapers-1.0.0-1-any.pkg.tar.xz /build/brinkOS-packages/;
 
+ENV GTK_THEME="Arctic-brinkOS" \
+    SHELL_THEME="Arctic-brinkOS" \
+    ICON_THEME="brinkOS-Icons" \
+    WALLPAPER="file:///usr/share/backgrounds/gnome/bear-rock.jpg"
+
 # Set our entrypoint which kicks off our build.
 ENTRYPOINT [ "/build/docker-entrypoint.sh" ]

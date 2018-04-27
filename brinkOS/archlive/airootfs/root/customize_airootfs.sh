@@ -38,6 +38,13 @@ sed -i.bak 's#bbs.archlinux.org#github.com/jamesbrink/brinkOS#g' /usr/lib/os-rel
 sed -i.bak 's#bugs.archlinux.org#github.com/jamesbrink/brinkOS#g' /usr/lib/os-release
 # cp /usr/lib/os-release /etc/os-release
 
+# Setup theme
+gsettings set org.cinnamon.desktop.interface gtk-theme "$GTK_THEME"
+gsettings set org.cinnamon.desktop.wm.preferences theme "$GTK_THEME"
+gsettings set org.cinnamon.theme name "$SHELL_THEME"
+gsettings set org.cinnamon.desktop.interface icon-theme "$ICON_THEME"
+gsettings set org.cinnamon.desktop.background picture-uri "$WALLPAPER"
+
 systemctl enable pacman-init.service choose-mirror.service
 # ln -s /usr/lib/systemd/system/gdm.service /build/archlive/airootfs/etc/systemd/system/display-manager.service
 # This throws out warnings but still works.
