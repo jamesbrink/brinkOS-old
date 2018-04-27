@@ -5,6 +5,8 @@ clang
 go
 ruby
 python
+python-pip
+jq
 erlang
 elixir
 rust
