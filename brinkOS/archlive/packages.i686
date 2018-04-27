@@ -5,6 +5,7 @@ brinkOS-themes-cinnamon
 go-ethereum 
 solidity
 
+uvesafb-dkms
 plymouth
 gdm-plymouth
 atom

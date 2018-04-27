@@ -41,6 +41,18 @@ RUN set -xe; \
     mkdir -p /AUR/packages; \
     chown -R build:build /AUR;
 
+# Build uvesafb
+RUN set -xe; \
+    cd /AUR/packages; \
+    wget https://aur.archlinux.org/cgit/aur.git/snapshot/uvesafb-dkms.tar.gz; \
+    tar xfv uvesafb-dkms.tar.gz; \
+    rm uvesafb-dkms.tar.gz; \
+    chown -R build:build uvesafb-dkms; \
+    cd uvesafb-dkms; \
+    sudo -u  build makepkg -si --noconfirm; \
+    repo-add /AUR/repo/AUR.db.tar.gz uvesafb-dkms*.pkg.tar.xz; \
+    mv uvesafb-dkms*.pkg.tar.xz /AUR/repo/;
+
 # Build plymouth from AUR
 # TODO move these elswhere as the list grows?
 # TODO how do I build without installing (dep errors will arise)
