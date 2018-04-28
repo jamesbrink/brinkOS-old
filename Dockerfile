@@ -79,6 +79,11 @@ RUN set -xe; \
     repo-add /AUR/repo/AUR.db.tar.gz *plymouth*.pkg.tar.xz; \
     mv *plymouth*.pkg.tar.xz /AUR/repo/;
 
+# Install build deps for brinkOS packages
+RUN set -xe; \
+    pacman -Syu --noconfirm; \
+    pacman -S kdebase-runtime icedtea-web --noconfirm;
+
 # Copy in brinkOS assets
 COPY ./brinkOS /build
 
@@ -94,6 +99,14 @@ RUN set -xe; \
     mkdir -p /build/brinkOS-packages; \
     mkdir -p /build/AUR; \
     chown -R build:build /build;
+
+
+# Build brinkOS assets package.
+RUN set -xe; \
+    cd /build/packages/brinkOS-assets; \
+    sudo -u build makepkg; \
+    repo-add /build/brinkOS-packages/brinkOS.db.tar.gz *.pkg.tar.xz; \
+    mv *.pkg.tar.xz /build/brinkOS-packages/;
 
 # Build brinkOS Cinnamon Themes package.
 RUN set -xe; \
@@ -119,7 +132,8 @@ RUN set -xe; \
 ENV GTK_THEME="Arctic-brinkOS" \
     SHELL_THEME="Arctic-brinkOS" \
     ICON_THEME="brinkOS-Icons" \
-    WALLPAPER="file:///usr/share/backgrounds/gnome/bear-rock.jpg"
+    WALLPAPER="file:///usr/share/backgrounds/gnome/bear-rock.jpg" \
+    PACKAGE_PROXY=""
 
 # Set our entrypoint which kicks off our build.
 ENTRYPOINT [ "/build/docker-entrypoint.sh" ]

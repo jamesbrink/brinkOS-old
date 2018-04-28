@@ -1,0 +1,33 @@
+# Maintainer: James Brink <brink.james@gmail.com>
+# Previous Maintainer: Alex Gajewski <agajews@gmail.com>
+
+_pkgname='brinkOS Assets'
+pkgname=brinkOS-assets
+pkgver=1.0.0
+pkgrel=1
+pkgdesc='Assets for brinkOS (Previously Apricity OS)'
+arch=(any)
+license=(GPL)
+url="https://github.com/jamesbrink/brinkOS"
+depends=('kdebase-runtime' 'icedtea-web')
+install=brinkOSassets.install
+
+package() {
+	mkdir -p "${pkgdir}/usr/share/etc"
+	# mkdir -p "${pkgdir}/usr/share/gnome-shell/extensions"
+	mkdir -p "${pkgdir}/etc/skel"
+	mkdir -p "${pkgdir}/usr/share/plymouth/themes"
+	cp -rf "${srcdir}/brinkOS-assets" "${pkgdir}/etc"
+	# cp -rf ${srcdir}/brinkOSassets/extensions/* "${pkgdir}/usr/share/gnome-shell/extensions"
+	# cp -rf "${srcdir}/brinkOSassets/.liquidprompt" "${pkgdir}/etc/skel"
+	cp -rf "${srcdir}/plymouth/brinkOS" "${pkgdir}/usr/share/plymouth/themes"
+	mkdir -p "${pkgdir}/etc/skel/.config/autostart"
+	mkdir -p "${pkgdir}/etc/gdm"
+	mkdir -p "${pkgdir}/etc/sudoers.d"
+	chmod 750 -R "${pkgdir}/etc/sudoers.d"
+	chmod +x ${pkgdir}/etc/brinkOS-assets/postinstall.sh
+	chmod +x ${pkgdir}/etc/brinkOS-assets/postuseradd.sh
+	# cp -f "${srcdir}/brinkOSassets/firstrun.sh" "${pkgdir}/etc/skel/.config/autostart"
+	# cp -f "${srcdir}/brinkOSassets/firstrun.desktop" "${pkgdir}/etc/skel/.config/autostart"
+	cp -f "${srcdir}/g_wheel" "${pkgdir}/etc/sudoers.d"
+}
