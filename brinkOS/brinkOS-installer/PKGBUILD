@@ -7,7 +7,7 @@ arch=('x86_64')
 license=(GPL)
 url="https://github.com/calamares"
 license=('LGPL')
-depends=('kconfig' 'kcoreaddons' 'ki18n' 'solid' 'yaml-cpp' 'parted' 'boost' 'hwinfo' 'qt5-svg' 'polkit-qt5' 'gptfdisk' 'kdebase-runtime' 'rsync' 'python' 'dmidecode' 'ki18n' 'squashfs-tools' 'kpmcore' 'qt5-webengine' 'qt5ct' 'kparts')
+depends=('kconfig' 'kcoreaddons' 'ki18n' 'solid' 'yaml-cpp' 'parted' 'boost' 'hwinfo' 'qt5-svg' 'polkit-qt5' 'gptfdisk' 'kdebase-runtime' 'rsync' 'python' 'dmidecode' 'ki18n' 'squashfs-tools' 'kpmcore' 'qt5-webengine' 'qt5-styleplugins-git' 'qt5ct' 'kparts')
 makedepends=('extra-cmake-modules' 'qt5-tools' 'git')
 backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/displaymanager.conf'
@@ -37,8 +37,8 @@ package() {
 	make DESTDIR="$pkgdir" install
 	install -Dm644 "../settings.conf" "$pkgdir/usr/share/calamares/settings.conf"
 	mkdir -p /usr/share/icons/
-	install -Dm644 "./calamares.png" "$pkgdir/usr/share/icons/calamares.png"
-	install -Dm644 "./brinkOS-Installer.desktop" "$pkgdir/usr/share/applications/brinkOS-Installer.desktop"
+	# install -Dm644 "./calamares.png" "$pkgdir/usr/share/icons/calamares.png"
+	# install -Dm644 "./brinkOS-Installer.desktop" "$pkgdir/usr/share/applications/brinkOS-Installer.desktop"
 	rm -r "$pkgdir/usr/lib/calamares/modules/dummyprocess/"
 	rm -r "$pkgdir/usr/lib/calamares/modules/dummypython/"
 	rm "$pkgdir/usr/share/calamares/modules/dummypython.conf"

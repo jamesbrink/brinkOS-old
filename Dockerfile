@@ -25,8 +25,7 @@ RUN set -xe; \
 # Install all needed deps
 RUN set -xe; \
     pacman -Syu --noconfirm; \
-    pacman -S base base-devel cmake automake autoconf wget vim archiso openssh git --noconfirm;
-
+    pacman -S base base-devel cmake automake autoconf wget vim archiso openssh git nginx --noconfirm;
 
 # Package is currently not resolving properly, quick work-around
 # TODO remove this later
@@ -84,8 +83,11 @@ RUN set -xe; \
     pacman -Syu --noconfirm; \
     pacman -S kdebase-runtime icedtea-web --noconfirm;
 
-# Copy in brinkOS assets
-COPY ./brinkOS /build
+# Create prepare our build.
+RUN set -xe; \
+    mkdir -p /build/brinkOS-packages; \
+    mkdir -p /build/AUR; \
+    chown -R build:build /build;
 
 # If building on a debian host, dev/shm points to /run/shm
 # and will fail without this directory.
@@ -94,12 +96,10 @@ RUN mkdir -p /build/archiso/work/x86_64/airootfs/run/shm; \
     mkdir -p /run/shm; \
     mkdir -p /var/run/shm;
 
-# Create prepare our build.
-RUN set -xe; \
-    mkdir -p /build/brinkOS-packages; \
-    mkdir -p /build/AUR; \
-    chown -R build:build /build;
-
+# Copy in brinkOS packages and work dir.
+COPY ./brinkOS/packages /build/packages
+COPY ./brinkOS/work /build/work
+RUN chown -R build:build /build
 
 # Build brinkOS assets package.
 RUN set -xe; \
@@ -129,6 +129,25 @@ RUN set -xe; \
     repo-add /build/brinkOS-packages/brinkOS.db.tar.gz brinkOS-wallpapers-1.0.0-1-any.pkg.tar.xz; \
     mv brinkOS-wallpapers-1.0.0-1-any.pkg.tar.xz /build/brinkOS-packages/;
 
+# Prepare build for brinkOS-installer.
+# Due to an issue with qt5 packages calling
+# speciic syscalls during build process, these have to be compiled
+# during docker run --priviledged
+RUN set -xe; \
+    cd /AUR/packages; \
+    wget https://aur.archlinux.org/cgit/aur.git/snapshot/qt5-styleplugins-git.tar.gz; \
+    tar xfv qt5-styleplugins-git.tar.gz; \
+    rm qt5-styleplugins-git.tar.gz; \
+    chown -R build:build qt5-styleplugins-git;
+COPY ./brinkOS/brinkOS-installer /build/packages/brinkOS-installer
+RUN chown -R build:build /build/packages
+
+# Copy in our entrypoint and archlive and set ownership.
+COPY ./brinkOS/archlive /build/archlive
+RUN chown -R build:build /build /AUR
+COPY ./brinkOS/docker-entrypoint.sh /build/docker-entrypoint.sh
+
+# Setup Environment variables.
 ENV GTK_THEME="Arctic-brinkOS" \
     SHELL_THEME="Arctic-brinkOS" \
     ICON_THEME="brinkOS-Icons" \
