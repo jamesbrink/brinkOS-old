@@ -70,7 +70,7 @@ systemctl enable vmtoolsd.service
 systemctl enable vmware-vmblock-fuse.service
 
 # Enable docker
-systemctl enable docker
+# systemctl enable docker
 
 # Enable graphical boot
 systemctl set-default graphical.target
